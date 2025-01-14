@@ -21,8 +21,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
 - [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -42,20 +42,20 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- See other players' scores in realtime
+- The ability to switch between higher or lower before you hit the flip button to submit your guess
+- Display of current score
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - two pages. a page for logging in and a page for playing the game.
+- **CSS** - make everything look nice. make it so the website works on different screen sizes.
+- **React** - Login. Bottons will update the users choice. The next card will be randomly chosen and the score will be updated or the game will end depending on whether or not the user guessed correctly
+- **Service** - Endpoints for: logging in, switching between higher and lower, calculating score, and updating score
+- **DB/Login** - Securely store usernames, passwords, and highscores. Logs in and registers the user. The user can't play unless they are logged in.
+- **WebSocket** - The score of other user is sent from the server to other users in realtime.
 
 ## 🚀 AWS deliverable
 
