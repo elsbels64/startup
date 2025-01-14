@@ -36,8 +36,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ```mermaid
 sequenceDiagram
     actor You
-    participant Player2
-    participant Player3
+    actor Player2
+    actor Player3
     participant Server
 
     You->>Server: You score points until your game ends
