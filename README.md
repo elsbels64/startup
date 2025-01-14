@@ -46,6 +46,9 @@ sequenceDiagram
     Player3->>Server: Player3 scores points until their game ends
     Server-->>You: You see Player3's score
     Server-->>Player2: Player2 sees Player3's score
+    Player2->>Server: Player2 scores points until their game ends
+    Server-->>You: You see Player2's score
+    Server-->>Player3: Player3 sees Player2's score
 ```
 
 ### Key features
