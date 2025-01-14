@@ -35,9 +35,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    You->>Server: You score points until your game ends
+    Server-->>Player2: Other players see your scores
+    Server-->>Player3: Other players see your scores
+    Player3->>Server: Player3 scores points until their game ends
+    Server-->>You: You see Player3's score
+    Server-->>Player2: Player2 sees Player3's score
 ```
 
 ### Key features
