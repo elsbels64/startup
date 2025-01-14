@@ -35,6 +35,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```mermaid
 sequenceDiagram
+    participant You
+    participant Player2
+    participant Player3
+    participant Server
+
     You->>Server: You score points until your game ends
     Server-->>Player2: Other players see your scores
     Server-->>Player3: Other players see your scores
@@ -54,11 +59,11 @@ sequenceDiagram
 I am going to use the required technologies in the following ways.
 
 - **HTML** - two pages. a page for logging in and a page for playing the game.
-- **CSS** - make everything look nice. make it so the website works on different screen sizes.
-- **React** - Login. Bottons will update the users choice. The next card will be randomly chosen and the score will be updated or the game will end depending on whether or not the user guessed correctly
-- **Service** - Endpoints for: logging in, switching between higher and lower, calculating score, and updating score
+- **CSS** - nice color scheme. button highlighting during play. make it so the website works on different screen sizes.
+- **React** - Login. Bottons will update the users choice, flip button, and route between pages.
+- **Service** - Endpoints for: logging in, switching between higher and lower, calculating score, and storing/retrieving scores. Third party call to get the next card in the deck
 - **DB/Login** - Securely store usernames, passwords, and highscores. Logs in and registers the user. The user can't play unless they are logged in.
-- **WebSocket** - The score of other user is sent from the server to other users in realtime.
+- **WebSocket** - Users' scores are sent to other players from the server in realtime.
 
 ## 🚀 AWS deliverable
 
