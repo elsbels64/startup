@@ -32,7 +32,7 @@ This website will be a higher or lower game. Players will guess if the next card
 
 ![Design image](higherOrLowerLoginMockup.png)
 ![Design image](higherOrLowerGameMockup.png)
-Two pages. A login page and a page for playing the game. The login page will have a place for imputting email and password and a button to login. 
+Two pages. A login page and a page for playing the game. The login page will have a place for inputting email and password and a button to login. 
 The page for the game will have buttons for picking higher or lower and submitting your answer. It will also have a place to display other player's scores. It will also display the previous card and the deck
 
 Here is a sequence diagram of how messages will be sent to other players
