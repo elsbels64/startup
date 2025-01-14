@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-This website will be a higher or lower game. Players will guess if the next card is higher or lower than the last and if they guess correctly, they get to keep playing. High scores are shared with other players
+This website will be a higher or lower game. Players will guess if the next card is higher or lower than the last and if they guess correctly, they get to keep playing and their score increases. Once the player's game ends their score is shared with other players
 
 
 > [!NOTE]
@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-This website will be a higher or lower game. Players will guess if the next card is higher or lower than the last and if they guess correctly, they get to keep playing and their score increases. Once the player's game ends the scores are shared with other players
+This website will be a higher or lower game. Players will guess if the next card is higher or lower than the last and if they guess correctly, they get to keep playing and their score increases. Once the player's game ends their score is shared with other players
 
 ### Design
 
@@ -64,11 +64,11 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - two pages. a page for logging in and a page for playing the game.
-- **CSS** - nice color scheme. button highlighting during play. make it so the website works on different screen sizes.
-- **React** - Login. Bottons will update the users choice, flip button, and route between pages.
-- **Service** - Endpoints for: logging in, switching between higher and lower, calculating score, and storing/retrieving scores. Third party call to get the next card in the deck
-- **DB/Login** - Securely store usernames, passwords, and highscores. Logs in and registers the user. The user can't play unless they are logged in.
+- **HTML** - Two pages. One page for logging in and another page for playing the game.
+- **CSS** - a nice color scheme. button highlighting during play. make it so the website works on different screen sizes.
+- **React** - Bottons will update the users choice, flip the cards, and route between pages.
+- **Service** - Endpoints for: logging in, switching between higher and lower, calculating score, and storing/retrieving scores. Third party call to get a deck of cards.
+- **DB/Login** - Securely store usernames, passwords. Logs in and registers the user. The user can't play unless they are logged in. Also store user scores
 - **WebSocket** - Users' scores are sent to other players from the server in realtime.
 
 ## 🚀 AWS deliverable
