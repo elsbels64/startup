@@ -1,0 +1,71 @@
+!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Higher Or Lower - Game</title>
+  </head>
+  <body>
+    <header>
+      <h1>Higher Or Lower</h1>
+      <nav>
+        <menu>
+          <li><a href="index.html">Login</a></li>
+          <li><a href="game.html">Game</a></li>
+          <li><a href="scores.html">Scores</a></li>
+        </menu>
+      </nav>
+      
+      <hr />
+    </header>
+
+    <main>
+     <h2 id="notification-title">Player Notifications</h2>
+     <ul class="notification">
+        <li class="player-name">Someone scored 10</li>
+        <li class="player-name">SomeoneElse scored 7</li>
+        <li class="player-name">Elise scored 90</li>
+      </ul>
+      <br />
+
+      <div>
+        <label for="count">Score</label>
+        <input type="text" id="count" value="-" readonly/>
+      </div>
+      
+      <div class = "game-display">
+        <div class = "deck container">
+          <img src = "deck_of_cards.png" alt = "a deck of cards">
+        </div>
+        <div class = "fliped-card-container">
+          <div class = "card-front">
+            <p>I will be replacing this card image using a card API I found later on</p>
+            <img src = "https://deckofcardsapi.com/static/img/AS.png" alt = "ace of spades">
+          </div>
+          <div class = "card-back">
+            <img src = "https://deckofcardsapi.com/static/img/back.png" alt = "the back of a card">
+          </div>
+        </div>
+      </div>
+      <p>Please predict whether the card value will be higher or lower!</p>
+      <form method="post">
+        <fieldset>
+          <legend>Your Prediction</legend>
+          <label for="higher">higher</label>
+          <input type="radio" id="higher" name="varRadio" value="higher" required/>
+          <label for="lower">lower</label>
+          <input type="radio" id="lower" name="varRadio" value="lower" required/>
+        </fieldset>
+        <button type="submit">Flip</button>
+      </form>
+      
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Created by: Elise Wirthlin</span>
+      <br/>
+      <a href="https://github.com/elsbels64/startup">GitHub</a>
+    </footer>
+  </body>
+</html>
