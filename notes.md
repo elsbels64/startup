@@ -18,4 +18,7 @@
 
 ## HTML Notes
 
-
+- make sure to label stuff clearly so that people using a screen reader can still use your website
+- if you want the user to be able to input stuff use a form
+- you can also make input stuff that is "readonly" and then user won't be able to update it
+- use "class" in tags. It makes css easier later on.
