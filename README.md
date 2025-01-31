@@ -81,15 +81,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **HTML pages** - I did not complete this part of the deliverable.
-- [x] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [x] **Links** - I did not complete this part of the deliverable.
-- [x] **Text** - I did not complete this part of the deliverable.
-- [x] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [x] **Images** - I did not complete this part of the deliverable.
-- [x] **Login placeholder** - I did not complete this part of the deliverable.
-- [x] **DB data placeholder** - I did not complete this part of the deliverable.
-- [x] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 3 pages. A main login page, a gameplay page, and a scores page
+- [x] **Proper HTML element usage** - I used several elements includeing paragraphs, h1, div, and forms
+- [x] **Links** - I have links between the html pages and a link to my github.
+- [x] **Text** - I included text on each page. Some examples are "Please predict whether the next card value will be higher or lower!", the text in the tables, and "Login to Play!"
+- [x] **3rd party API placeholder** - I have card images as a placeholder for the card api I will use later
+- [x] **Images** - I have images for the deck of card and single card
+- [x] **Login placeholder** - I have a page to login
+- [x] **DB data placeholder** - the "scores" page
+- [x] **WebSocket placeholder** - I have a section at the top of the gameplay page that will be updated with other players' scores.
 
 ## 🚀 CSS deliverable
 
