@@ -1,0 +1,16 @@
+
+form{
+    height: 40vh;
+    flex: 0, 20vh, 40vh;
+    display: flex;
+    flex-direction: column;
+}
+
+form > div{
+    flex: 1;
+}
+
+title{
+    height: 20vh;
+    flex: 0, 20px, 0;
+}
