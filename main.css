@@ -24,7 +24,7 @@ body {
 }
 
 header {
-    flex: 0, 0, 5vh;
+    flex: 0, 0, 5em;
     padding: 5px;
     display: flex;
     flex-wrap: nowrap;
@@ -67,7 +67,7 @@ main {
 
 footer {
     padding: 1rem;
-    flex: 0 0 10vh;
+    flex: 0 0 10em;
 }
 
 
