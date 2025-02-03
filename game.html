@@ -52,10 +52,10 @@
         <form id="prediction-form">
           <fieldset>
             <legend>Your Prediction</legend>
-            <label for="higher">higher</label>
-            <input type="radio" id="higher" name="varRadio" value="higher" required/>
-            <label for="lower">lower</label>
-            <input type="radio" id="lower" name="varRadio" value="lower" required/>
+            <input type="radio" class="btn-check" id="higher" name="varRadio" value="higher" autocomplete="off" required/>
+            <label class="btn btn-secondary" for="higher">higher</label>
+            <input type="radio" class="btn-check" id="lower" name="varRadio" value="lower" required/>
+            <label class="btn btn-secondary"for="lower">lower</label>
           </fieldset>
           <button type="submit">Flip</button>
         </form>
