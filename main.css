@@ -65,12 +65,8 @@ main {
 
 footer {
     flex: 0 0 10em;
-}
-
-footer hr{
-  padding: 0px;
-  padding-top: 5px;
-  margin:0px;
+    background-color: var(--header-footer-bg);
+    color: var(--text-color);
 }
 
 
