@@ -1,17 +1,16 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  } */
-
-
-   main .container {
+main .container {
     display: flex;
     flex-wrap: wrap; /* Allow wrapping for better responsiveness */
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
     flex-grow: 1;
+  }
+
+  main{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
   .other-scores {
@@ -47,7 +46,7 @@
   
   .game-display img {
     width: 100px;
-    height: 100px;
+    height: fit-content;
     object-fit: contain;
     max-width: 100%;
   }
@@ -60,12 +59,13 @@
   }
   
   .fliped-card-container img {
-    min-height: fit-content;
+    min-height: min-content;
   }
 
   /* Card Flip Animation */
 .fliped-card-container {
     width: 100px;
+    min-height: min-content;
     height: 140px;
     position: relative;
     perspective: 1000px;
@@ -97,7 +97,7 @@
 }
   
   .prediction-form {
-    display: flex;
+    display:block;
     flex-direction: column;
     align-items: center;
     gap: 5px;
