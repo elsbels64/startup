@@ -16,6 +16,12 @@
 - link server to domain name
 - celebrate creating your website
 
+## CSS Notes
+
+- use flex to set the orientation of the elements
+- use bootstrap for header and footer.
+- to use bootstrap, you add classes to your elements
+
 ## HTML Notes
 
 - make sure to label stuff clearly so that people using a screen reader can still use your website
