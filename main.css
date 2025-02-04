@@ -64,8 +64,13 @@ main {
 }
 
 footer {
-    padding: 1rem;
     flex: 0 0 10em;
+}
+
+footer hr{
+  padding: 0px;
+  padding-top: 5px;
+  margin:0px;
 }
 
 
