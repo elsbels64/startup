@@ -95,7 +95,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Header, footer, and main content body** - I created a main.css that makes the header, footer, and body a specific color and font. it also sets the size of the header, the footer, and the content body.
+- [x] **Header, footer, and main content body** - I created a main.css that makes the header, footer, and body a specific color and font. it also sets the size of the header, the footer, and the content body. I also made it so the footer sticks to the bottom of the page as you scroll
 - [x] **Navigation elements** - I used bootstrap and css to make the navigation bar at the top of each page look nice and stay consistent.
 - [x] **Responsive to window resizing** - I made it so the header and footer disappear when the window shrinks to a certain size. I also used flex so that things still look nice as the window grows and shrinks
 - [x] **Application elements** -  I made it so the card image shrinks and grows as the page size shrinks and grows. I also added an animation to flip the card that I will use JavaScript later on to make it play when you click the flip button. Additionally, I made all of the buttons look nice.
