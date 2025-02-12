@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-body {
+.app {
     display: flex;
     flex-direction: column;
     min-width: 100vh;
