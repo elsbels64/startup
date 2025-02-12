@@ -1,4 +1,5 @@
 import React from 'react';
+import './game.css';
 
 export function Game() {
   return (
@@ -14,8 +15,8 @@ export function Game() {
       </div>
       <div className = "game">
         <div className = "score">
-          <label for="count">Score</label>
-          <input type="text" id="count" defaultValue="-" readonly/>
+          <label htmlFor="count">Score</label>
+          <input type="text" id="count" defaultValue="-" readOnly/>
         </div>
         <div className = "game-display">
           <div className = "fliped-card-container">
@@ -31,9 +32,9 @@ export function Game() {
           <fieldset>
             <legend>Your Prediction</legend>
             <input type="radio" className = "btn-check" id="higher" name="varRadio" value="higher" autoComplete="off" required/>
-            <label className = "btn btn-secondary" Htmlfor="higher">higher</label>
+            <label className = "btn btn-secondary" htmlFor="higher">higher</label>
             <input type="radio" className = "btn-check" id="lower" name="varRadio" value="lower" required/>
-            <label className = "btn btn-secondary"Htmlfor="lower">lower</label>
+            <label className = "btn btn-secondary"htmlFor="lower">lower</label>
           </fieldset>
           <button type="submit">Flip</button>
         </form>

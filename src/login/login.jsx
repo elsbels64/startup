@@ -1,10 +1,11 @@
 import React from 'react';
+import './login.css';
 
 export function Login() {
   return (
     <main>
       <h1 className = "title">Login to Play!</h1>
-      <form method="get" action="game.html" class = "login-form">
+      <form method="get" action="game.html" className = "login-form">
         <div>
           <span>username</span>
           <input type="text" placeholder="your username" />
