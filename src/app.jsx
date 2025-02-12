@@ -1,18 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import { NavLink } from 'react-bootstrap';
 
 export default function App() {
-  return <div className='app'>
-        <header>
+  return <div className='app bg-dark text-light'>
+    <header>
       <div className =  "container-fluid">
-        <h1 style = "text-align: center;">Higher Or Lower</h1>
+        <h1>Higher Or Lower</h1>
       </div>
       <div className =  "container" data-bs-theme="dark">
         <nav className =  "navbar  navbar-expand-lg bg-body-tertiary">
-          <a href="index.html" className =  "navbar-brand">Login</a>
-          <a href="game.html" className =  "navbar-brand">Game</a>
-          <a href="scores.html" className =  "navbar-brand">Scores</a>
+          <NavLink to = "index" className =  "navbar-brand">Login</NavLink>
+          <NavLink to = "game" className =  "navbar-brand">Game</NavLink>
+          <NavLink to = "scores" className =  "navbar-brand">Scores</NavLink>
         </nav>
       </div>
     </header>
@@ -24,7 +25,7 @@ export default function App() {
     <footer className = "fixed-bottom">
       <span className = "text-reset">Created by: Elise Wirthlin</span>
       <br/>
-      <a href="https://github.com/elsbels64/startup">GitHub</a>
+      <a href = "https://github.com/elsbels64/startup">GitHub</a>
     </footer>
   </div>;
 }
