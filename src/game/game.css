@@ -13,6 +13,10 @@ main .container {
     box-sizing: border-box;
   }
   
+  .btn{
+    margin: 3px;
+  }
+
   .other-scores {
     width: 150px;
     height: 200px;
