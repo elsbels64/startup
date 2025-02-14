@@ -106,9 +106,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - I completed this part of the deliverable.
+- [x] **Components** - I created a scores.jsx, game.jsx, login.jsx, and index.jsx
+- [x] **Router** - I added rounter in index.jsx that switches between scores.jsx, game,jsx, and login.jsx when you click on the navigation bar buttons
 
 ## 🚀 React part 2: Reactivity
 
