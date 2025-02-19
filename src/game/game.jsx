@@ -14,19 +14,43 @@ export function Game() {
 
   const flipCard = async (event) => {
     event.preventDefault();
+    const prevCard = card;
     try {
       const response = await fetch("https://deckofcardsapi.com/api/deck/new/draw/?count=1");
       const data = await response.json();
       if (data.cards && data.cards.length > 0) {
-        setCard({ image: data.cards[0].image, code: data.cards[0].code });
+        const newCard = { image: data.cards[0].image, code: data.cards[0].code };
+        setCard(newCard);
+        if(isNewCardHigher(prevCard.code, newCard.code) == true){
+          console.log("New card is higher")
+        }else{
+          console.log("New card is lower")
+        }
       } else {
         throw new Error("No cards received from API");
       }
     } catch (error) {
       console.error("API request failed, using fallback card", error);
-      setFallbackIndex((prevIndex) => (prevIndex + 1) % defaultCards.length);
+      setFallbackIndex((prevIndex) => (prevIndex + (Math.floor(Math.random() * 10))) % defaultCards.length);
       setCard(defaultCards[fallbackIndex]);
+      const newCard = defaultCards[fallbackIndex]
+      if(isNewCardHigher(prevCard.code, newCard.code) == true){
+        console.log("New card is higher")
+      }else{
+        console.log("New card is lower")
+      }
     }
+  };
+
+  const cardValues = {
+    "A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
+    "J": 11, "Q": 12, "K": 13
+  };
+  
+  const isNewCardHigher = (prevCardCode, newCardCode) => {
+    const prevValue = cardValues[prevCardCode.slice(0, -1)];
+    const newValue = cardValues[newCardCode.slice(0, -1)];
+    return newValue > prevValue;
   };
 
   return (
