@@ -7,18 +7,19 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Game } from './game/game';
 import { Scores } from './scores/scores';
-
-export const AuthState = {
-  Authenticated: 'Authenticated',
-  Unauthenticated: 'Unauthenticated'
-};
+import { AuthState } from './login/authState';
 
 export default function App() {
-  const savedUserName = localStorage.getItem('userName') || '';
-  const savedAuthState = localStorage.getItem('authState') || AuthState.Unauthenticated;
 
-  const [userName, setUserName] = React.useState(savedUserName);
-  const [authState, setAuthState] = React.useState(savedAuthState);
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
+  // const savedUserName = localStorage.getItem('userName') || '';
+  // const savedAuthState = localStorage.getItem('authState') || AuthState.Unauthenticated;
+
+  // const [userName, setUserName] = React.useState(savedUserName);
+  // const [authState, setAuthState] = React.useState(savedAuthState);
 
   const handleAuthChange = (newUserName, newAuthState) => {
     setUserName(newUserName);
@@ -38,11 +39,11 @@ export default function App() {
         <nav className =  "navbar  navbar-expand-lg bg-body-tertiary">
           <NavLink to = "/" className =  "navbar-brand">Login</NavLink>
           {authState === AuthState.Authenticated && (
-                <NavLink className='nav-link' to='game'>
+                <NavLink className="navbar-brand" to='/game'>
                   Game
                 </NavLink>
               )}
-          <NavLink to = "scores" className =  "navbar-brand">Scores</NavLink>
+          <NavLink to = "/scores" className =  "navbar-brand">Scores</NavLink>
         </nav>
       </div>
     </header>
