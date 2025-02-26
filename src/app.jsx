@@ -11,20 +11,14 @@ import { AuthState } from './login/authState';
 
 export default function App() {
 
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
-  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
+  const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
 
-  // const savedUserName = localStorage.getItem('userName') || '';
-  // const savedAuthState = localStorage.getItem('authState') || AuthState.Unauthenticated;
-
-  // const [userName, setUserName] = React.useState(savedUserName);
-  // const [authState, setAuthState] = React.useState(savedAuthState);
-
-  const handleAuthChange = (newUserName, newAuthState) => {
-    setUserName(newUserName);
+  const handleAuthChange = (newUsername, newAuthState) => {
+    setUserName(newUsername);
     setAuthState(newAuthState);
-    localStorage.setItem('userName', newUserName);
+    localStorage.setItem('username', newUsername);
     localStorage.setItem('authState', newAuthState);
   };
   
@@ -51,9 +45,9 @@ export default function App() {
     <Routes>
           <Route
             index
-            element={<Login userName={userName} authState={authState} onAuthChange={handleAuthChange} />}
+            element={<Login userName={username} authState={authState} onAuthChange={handleAuthChange} />}
           />
-          <Route path='/game' element={<Game userName={userName} />} />
+          <Route path='/game' element={<Game username={username}/>} />
           <Route path='/scores' element={<Scores />} />
           <Route path='*' element={<NotFound />} />
         

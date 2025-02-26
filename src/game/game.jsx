@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./game.css";
 
-export function Game() {
+export function Game({username}) {
   const defaultCards = [
     { image: "https://deckofcardsapi.com/static/img/AS.png", code: "AS" },
     { image: "https://deckofcardsapi.com/static/img/KD.png", code: "KD" },
     { image: "https://deckofcardsapi.com/static/img/QH.png", code: "QH" }
   ];
 
+  const cardBack = { image: "https://deckofcardsapi.com/static/img/back.png"}
+
   const [card, setCard] = useState(defaultCards[0]);
   const [prevCard, setPrevCard] = useState(null);
   const [fallbackIndex, setFallbackIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [runningScore, setRunningScore] = useState(0);
+  const [highScore, setHighScore] = useState(parseInt(localStorage.getItem("higherScore")) || 0)
+  const [score, setScore] = useState(parseInt(localStorage.getItem('score')) || 0)
 
   useEffect(() => {
     setPrevCard(card); // Update previous card when a new card is drawn
@@ -69,9 +73,13 @@ export function Game() {
     const isEqual = areCardsEqual(prev.code, next.code);
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
-      setScore((prevScore) => prevScore + 1);
+      setRunningScore((prevScore) => prevScore + 1);
     } else {
-      setScore(0);
+      setScore(runningScore);
+      if(runningScore>highScore){
+        setHighScore(runningScore);
+      }
+      setRunningScore(0);
     }
   };
 
@@ -88,18 +96,12 @@ export function Game() {
         </div>
         <div className="game">
           <div className="score">
+          <p>{username}'s high score is {highScore}</p>
             <label htmlFor="count">Score</label>
-            <input type="text" id="count" value={score} readOnly />
+            <input type="text" id="count" value={runningScore} readOnly />
           </div>
           <div className="game-display">
-            <div className="flipped-card-container">
-              <div className="card-front">
                 <img src={card.image} alt={`Card: ${card.code}`} />
-              </div>
-              <div className="card-back">
-                <img src="https://deckofcardsapi.com/static/img/back.png" alt="Card back" />
-              </div>
-            </div>
           </div>
           <form id="prediction-form" onSubmit={flipCard}>
             <fieldset>
