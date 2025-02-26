@@ -1,0 +1,7 @@
+.other-scores {
+    min-width: fit-content;
+    height: 200px;
+    background-color: darkgray;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }

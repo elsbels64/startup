@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./game.css";
+import { OtherScores } from "./otherScores.jsx";
 
-export function Game({username}) {
+export function Game(props) {
   const defaultCards = [
     { image: "https://deckofcardsapi.com/static/img/AS.png", code: "AS" },
     { image: "https://deckofcardsapi.com/static/img/KD.png", code: "KD" },
     { image: "https://deckofcardsapi.com/static/img/QH.png", code: "QH" }
   ];
 
-  const cardBack = { image: "https://deckofcardsapi.com/static/img/back.png"}
-
   const [card, setCard] = useState(defaultCards[0]);
   const [prevCard, setPrevCard] = useState(null);
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [runningScore, setRunningScore] = useState(0);
-  const [highScore, setHighScore] = useState(parseInt(localStorage.getItem("higherScore")) || 0)
-  const [score, setScore] = useState(parseInt(localStorage.getItem('score')) || 0)
+  const [highScore, setHighScore] = useState(parseInt(localStorage.getItem("higherScore")) || 0);
+  const [score, setScore] = useState(0);
+  const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    setPrevCard(card); // Update previous card when a new card is drawn
+    setPrevCard(card);
   }, [card]);
+
+  useEffect(() => {
+    const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
+    setScores(storedScores);
+  }, [score]);
 
   const flipCard = async (event) => {
     event.preventDefault();
@@ -68,40 +73,44 @@ export function Game({username}) {
   };
 
   const updateScore = (prev, next, prediction) => {
-    if (!prev) return; // Skip scoring on first flip
+    if (!prev) return;
     const isHigher = isNewCardHigher(prev.code, next.code);
     const isEqual = areCardsEqual(prev.code, next.code);
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
     } else {
+      const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
-      if(runningScore>highScore){
+      updateScoresLocalStorage(newScore);
+      if (runningScore > highScore) {
         setHighScore(runningScore);
       }
       setRunningScore(0);
     }
   };
 
+  const updateScoresLocalStorage = (newScore) => {
+    let storedScores = JSON.parse(localStorage.getItem("scores")) || [];
+    storedScores.push(newScore);
+    storedScores.sort((a, b) => b.score - a.score);
+    storedScores = storedScores.slice(0, 10);
+    localStorage.setItem("scores", JSON.stringify(storedScores));
+    setScores(storedScores);
+  };
+
   return (
     <main>
       <div className="container">
-        <div className="other-scores">
-          <h2 id="notification-title">Other Player's Scores</h2>
-          <ul className="notification">
-            <li className="player-name">Someone scored 10</li>
-            <li className="player-name">SomeoneElse scored 7</li>
-            <li className="player-name">Elise scored 90</li>
-          </ul>
-        </div>
+        <OtherScores scores={scores} />
         <div className="game">
           <div className="score">
-          <p>{username}'s high score is {highScore}</p>
+            <p>{props.username}'s high score is {highScore}</p>
             <label htmlFor="count">Score</label>
             <input type="text" id="count" value={runningScore} readOnly />
           </div>
           <div className="game-display">
-                <img src={card.image} alt={`Card: ${card.code}`} />
+            <img src={card.image} alt={`Card: ${card.code}`} />
           </div>
           <form id="prediction-form" onSubmit={flipCard}>
             <fieldset>
