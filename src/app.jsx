@@ -16,7 +16,7 @@ export default function App() {
   const [authState, setAuthState] = React.useState(currentAuthState);
 
   const handleAuthChange = (newUsername, newAuthState) => {
-    setUserName(newUsername);
+    setUsername(newUsername);
     setAuthState(newAuthState);
     localStorage.setItem('username', newUsername);
     localStorage.setItem('authState', newAuthState);
@@ -45,7 +45,7 @@ export default function App() {
     <Routes>
           <Route
             index
-            element={<Login userName={username} authState={authState} onAuthChange={handleAuthChange} />}
+            element={<Login username={username} authState={authState} onAuthChange={handleAuthChange} />}
           />
           <Route path='/game' element={<Game username={username}/>} />
           <Route path='/scores' element={<Scores />} />
