@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 export function Authenticated(props) {
   function logout() {
-    localStorage.removeItem('userName');
+    localStorage.removeItem('username');
     props.onLogout();
   }
 
@@ -14,7 +14,7 @@ export function Authenticated(props) {
 
   return (
     <div>
-      <div className='playerName'>{props.userName}</div>
+      <div className='playerName'>{props.username}</div>
       <Button variant='primary' onClick={() => navigate('/game')}>
         Play
       </Button>

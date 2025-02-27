@@ -74,17 +74,22 @@ export function Game(props) {
 
   const updateScore = (prev, next, prediction) => {
     if (!prev) return;
+    // console.log("update score")
     const isHigher = isNewCardHigher(prev.code, next.code);
     const isEqual = areCardsEqual(prev.code, next.code);
+    // console.log(prediction)
+    // console.log(isHigher)
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
     } else {
+      // console.log("wrong guess")
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
       updateScoresLocalStorage(newScore);
       if (runningScore > highScore) {
         setHighScore(runningScore);
+        updateHighScoresLocalStorage(newScore);
       }
       setRunningScore(0);
     }
@@ -92,12 +97,20 @@ export function Game(props) {
 
   const updateScoresLocalStorage = (newScore) => {
     let storedScores = JSON.parse(localStorage.getItem("scores")) || [];
-    storedScores.push(newScore);
-    storedScores.sort((a, b) => b.score - a.score);
+    storedScores.unshift(newScore);
     storedScores = storedScores.slice(0, 10);
     localStorage.setItem("scores", JSON.stringify(storedScores));
     setScores(storedScores);
   };
+
+  const updateHighScoresLocalStorage = (newScore) => {
+    let storedHighScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    storedHighScores = storedHighScores.filter(score => score.name !== newScore.name);
+    storedHighScores.push(newScore);
+    storedHighScores.sort((a, b) => b.score - a.score);
+    localStorage.setItem("highScores", JSON.stringify(storedHighScores));
+  };
+
 
   return (
     <main>
@@ -105,7 +118,6 @@ export function Game(props) {
         <OtherScores scores={scores} />
         <div className="game">
           <div className="score">
-            <p>{props.username}'s high score is {highScore}</p>
             <label htmlFor="count">Score</label>
             <input type="text" id="count" value={runningScore} readOnly />
           </div>
