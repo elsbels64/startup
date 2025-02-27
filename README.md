@@ -114,8 +114,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I mocked out functionality for: logging in, playing the game (generating a random car, keeping track of the previous card, and assessing if the player guessed correctly if the new card would be higher or lower), updating "other players' scores" after they lose a game, and keeping track of highscores to be displayed on the "scores" page.
+- [x] **Hooks** - I used useState (found in app.jsx, game.jsx, unauthenticated.jsx, and scores.jsx) and useEffect (found in game.jsx, otherScores.jsx, and scores.jsx) hooks
 
 ## 🚀 Service deliverable
 
