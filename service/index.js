@@ -54,6 +54,45 @@ apiRouter.delete("auth/logout", async (req,res) => {
   res.status(204).end();
 })
 
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+};
+
+apiRouter.get('/scores', verifyAuth, (_req, res) => {
+  res.send(scores);
+});
+
+apiRouter.post('/score', verifyAuth, (req, res) => {
+  scores.unshift(req.body.score);
+  res.send(scores);
+});
+
+function updateHighScores(newScore) {
+  let found = false;
+  for (const [i, prevScore] of scores.entries()) {
+    if (newScore.score > prevScore.score) {
+      scores.splice(i, 0, newScore);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    scores.push(newScore);
+  }
+
+  if (scores.length > 10) {
+    scores.length = 10;
+  }
+
+  return scores;
+}
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
@@ -64,14 +103,6 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-async function verifyAuth(req, res, next) {
-  const user = await findUser("token", req.cookeies[authCookieName]);
-  if (user){
-    next();
-  } else{
-    res.status(401).send({ msg: "unauthorized"});
-  }
-}
 
 async function createUser(username, password){
   const paswordHashcode = await bcrypt.hash(password, 10);
