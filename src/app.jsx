@@ -14,13 +14,6 @@ export default function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
   const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
-
-  const handleAuthChange = (newUsername, newAuthState) => {
-    setUsername(newUsername);
-    setAuthState(newAuthState);
-    localStorage.setItem('username', newUsername);
-    localStorage.setItem('authState', newAuthState);
-  };
   
   return (
   <BrowserRouter>
@@ -44,8 +37,17 @@ export default function App() {
 
     <Routes>
           <Route
-            index
-            element={<Login username={username} authState={authState} onAuthChange={handleAuthChange} />}
+            path='/'
+            element={<Login 
+              username={username}
+                authState={authState}
+                onAuthChange={(username, authState) => {
+                  setAuthState(authState);
+                  setUsername(username);
+                }}
+              />
+            }
+            exact
           />
           <Route path='/game' element={<Game username={username}/>} />
           <Route path='/scores' element={<Scores />} />

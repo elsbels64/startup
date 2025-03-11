@@ -4,9 +4,11 @@ export function Scores() {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    const storedScores = JSON.parse(localStorage.getItem("highScores")) || [];
-    console.log(storedScores)
-    setScores(storedScores);
+    fetch("/api/highScores")
+    .then((response) => response.json())
+    .then((highScores) => {
+      setScores(highScores);
+    })
   }, []);
 
 

@@ -2,18 +2,41 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';;
 
+import { MessageDialog } from './messageDialog';
+
 export function Unauthenticated(props) {
   const [username, setUsername] = React.useState(props.username);
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState(null);
 
   async function loginUser() {
-    localStorage.setItem('username', username);
-    props.onLogin(username);
+    authenticate("/api/auth/login");
   }
 
   async function registerUser() {
-    localStorage.setItem('username', username);
-    props.onLogin(username);
+    authenticate("/api/auth/create");
+  }
+
+  async function authenticate(endpoint) {
+    try{
+      const response = await fetch(endpoint, {
+        method: "post",
+        body: JSON.stringify({username: username,
+          password: password,}),
+          headers: {
+            "Content-type": "application/json; charset = UTF-8"
+          },
+      })
+      if(response?.status === 200) {
+        localStorage.setItem('username', username);
+      } else {
+        const body = await response.json();
+        setError(`Something Went Wrong: ${body.msg}`);
+      }
+    }catch (error) {
+      // Case 4: Network failure or server is completely unreachable
+      setError("Request failed: The server is unreachable or down.");
+    }
   }
 
   return (
@@ -34,6 +57,7 @@ export function Unauthenticated(props) {
           Register
         </Button>
       </div>
+      <MessageDialog message={error} onHide={() => setError(null)} />
     </>
   );
 }

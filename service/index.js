@@ -9,6 +9,7 @@ const authCookieName = 'token';
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
 let scores = [];
+let highScores = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 app.use(express.json());
@@ -69,28 +70,40 @@ apiRouter.get('/scores', verifyAuth, (_req, res) => {
 
 apiRouter.post('/score', verifyAuth, (req, res) => {
   scores.unshift(req.body.score);
+  if (scores.length > 10) {
+    scores.length = 10;
+  }
   res.send(scores);
+});
+
+apiRouter.get('/highScores', verifyAuth, (_req, res) => {
+  res.send(highScores);
+});
+
+apiRouter.post('/highScore', verifyAuth, (req, res) => {
+  highScores = updateHighScores(req.body);
+  res.send(highScores);
 });
 
 function updateHighScores(newScore) {
   let found = false;
-  for (const [i, prevScore] of scores.entries()) {
+  for (const [i, prevScore] of highScores.entries()) {
     if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
+      highScores.splice(i, 0, newScore);
       found = true;
       break;
     }
   }
 
   if (!found) {
-    scores.push(newScore);
+    highScores.push(newScore);
   }
 
-  if (scores.length > 10) {
-    scores.length = 10;
+  if (highScores.length > 10) {
+    highScores.length = 10;
   }
 
-  return scores;
+  return highScores;
 }
 
 // Default error handler
