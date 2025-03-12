@@ -86,19 +86,24 @@ apiRouter.post('/highScore', verifyAuth, (req, res) => {
 });
 
 function updateHighScores(newScore) {
-  let found = false;
-  for (const [i, prevScore] of highScores.entries()) {
-    if (newScore.score > prevScore.score) {
+  highScores = highScores.filter(score => score.username !== newScore.username);
+
+  // Insert the new high score in the correct position
+  let inserted = false;
+  for (let i = 0; i < highScores.length; i++) {
+    if (newScore.score > highScores[i].score) {
       highScores.splice(i, 0, newScore);
-      found = true;
+      inserted = true;
       break;
     }
   }
 
-  if (!found) {
+  // If not inserted, push it to the end
+  if (!inserted) {
     highScores.push(newScore);
   }
 
+  // Keep only the top 10 scores
   if (highScores.length > 10) {
     highScores.length = 10;
   }

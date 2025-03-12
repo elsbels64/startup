@@ -22,8 +22,12 @@ export function Game(props) {
   }, [card]);
 
   useEffect(() => {
-    const storedScores = JSON.parse(localStorage.getItem("scores")) || [];
-    setScores(storedScores);
+    fetch("/api/scores")
+    .then((response) => response.json())
+    .then((scores) => {
+      setScores(scores);
+    })
+    setScores(scores);
   }, [score]);
 
   const flipCard = async (event) => {
@@ -86,29 +90,28 @@ export function Game(props) {
       // console.log("wrong guess")
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
-      updateScoresLocalStorage(newScore);
+      saveScore(newScore, '/api/score');
       if (runningScore > highScore) {
         setHighScore(runningScore);
+        saveScore(newScore, '/api/highscore');
         updateHighScoresLocalStorage(newScore);
       }
       setRunningScore(0);
     }
   };
 
-  const updateScoresLocalStorage = (newScore) => {
-    let storedScores = JSON.parse(localStorage.getItem("scores")) || [];
-    storedScores.unshift(newScore);
-    storedScores = storedScores.slice(0, 10);
-    localStorage.setItem("scores", JSON.stringify(storedScores));
-    setScores(storedScores);
-  };
+  
+  async function saveScore(score, request) {
+    const newScore = { name: username, score: score};
 
-  const updateHighScoresLocalStorage = (newScore) => {
-    let storedHighScores = JSON.parse(localStorage.getItem("highScores")) || [];
-    storedHighScores = storedHighScores.filter(score => score.name !== newScore.name);
-    storedHighScores.push(newScore);
-    storedHighScores.sort((a, b) => b.score - a.score);
-    localStorage.setItem("highScores", JSON.stringify(storedHighScores));
+    await fetch(request, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newScore),
+    });
+
+    // Let other players know the game has concluded
+    // GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
   };
 
 
