@@ -27,7 +27,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   if(await findUser('username', req.body.username)){
     res.status(409).send({msg: "Existing user"});
   } else {
-    const user = await createServerModuleRunner(req.body.username, req.body.password);
+    const user = await createUser(req.body.username, req.body.password);
     setAuthCookie(res, user.token);
     res.send({username: user.username})
   }
@@ -46,7 +46,7 @@ apiRouter.post('/auth/login', async(req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-apiRouter.delete("auth/logout", async (req,res) => {
+apiRouter.delete("/auth/logout", async (req,res) => {
   const user = await findUser("token", req.cookies[authCookieName]);
   if (user) {
     delete user.token;
@@ -69,7 +69,7 @@ apiRouter.get('/scores', verifyAuth, (_req, res) => {
 });
 
 apiRouter.post('/score', verifyAuth, (req, res) => {
-  scores.unshift(req.body.score);
+  scores.unshift(req.body);
   if (scores.length > 10) {
     scores.length = 10;
   }
@@ -123,7 +123,7 @@ app.use((_req, res) => {
 
 
 async function createUser(username, password){
-  const paswordHashcode = await bcrypt.hash(password, 10);
+  const passwordHashcode = await bcrypt.hash(password, 10);
   const user = {
     username: username,
     password: passwordHashcode,
@@ -148,5 +148,5 @@ async function setAuthCookie(res, authToken) {
 }
 
 app.listen(port, () =>{
-  console.log('listening on port ${port}');
+  console.log(`listening on port ${port}`);
 });

@@ -15,7 +15,7 @@ export function Authenticated(props) {
       const response = await fetch("/api/auth/logout", {
       method: "delete",
       })
-      if(response?.status === 200) {
+      if(response?.status === 204) {
         localStorage.removeItem('username');
         props.onLogout();
       } else {

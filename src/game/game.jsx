@@ -94,7 +94,6 @@ export function Game(props) {
       if (runningScore > highScore) {
         setHighScore(runningScore);
         saveScore(newScore, '/api/highscore');
-        updateHighScoresLocalStorage(newScore);
       }
       setRunningScore(0);
     }
@@ -102,12 +101,10 @@ export function Game(props) {
 
   
   async function saveScore(score, request) {
-    const newScore = { name: username, score: score};
-
     await fetch(request, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newScore),
+      body: JSON.stringify(score),
     });
 
     // Let other players know the game has concluded
