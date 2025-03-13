@@ -11,7 +11,7 @@ export function Scores() {
     })
   }, []);
 
-  console.log(scores)
+  //console.log(scores)
 
   return (
     <main>
