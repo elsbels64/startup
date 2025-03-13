@@ -78,11 +78,8 @@ export function Game(props) {
 
   const updateScore = (prev, next, prediction) => {
     if (!prev) return;
-    // console.log("update score")
     const isHigher = isNewCardHigher(prev.code, next.code);
     const isEqual = areCardsEqual(prev.code, next.code);
-    // console.log(prediction)
-    // console.log(isHigher)
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
