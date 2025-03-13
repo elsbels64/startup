@@ -121,11 +121,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - I have several node.js endpoints that are connected to my frontend using express
+- [X] **Static middleware for frontend** - I did this :)
+- [X] **Calls to third party endpoints** - calls to "deckofcardsapi.com" on line 43 of game.jsx used to draw a new card
+- [X] **Backend service endpoints** - endpoints to register a new user, login a user, send scores, update scores, send high scores, update high scores.
+- [X] **Frontend calls service endpoints** -  calls service to login or register. sends an unauthorized message if the login is incorrect. calls to service endpoints in game.jsx and scores.jsx to retrieve and post scores.
 
 ## 🚀 DB/Login deliverable
 
