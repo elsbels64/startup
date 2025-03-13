@@ -93,7 +93,7 @@ export function Game(props) {
       saveScore(newScore, '/api/score');
       if (runningScore > highScore) {
         setHighScore(runningScore);
-        saveScore(newScore, '/api/highscore');
+        saveScore(newScore, '/api/highScore');
       }
       setRunningScore(0);
     }

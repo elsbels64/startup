@@ -86,7 +86,7 @@ apiRouter.post('/highScore', verifyAuth, (req, res) => {
 });
 
 function updateHighScores(newScore) {
-  highScores = highScores.filter(score => score.username !== newScore.username);
+  highScores = highScores.filter(score => score.name !== newScore.name);
 
   // Insert the new high score in the correct position
   let inserted = false;
