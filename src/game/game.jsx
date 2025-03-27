@@ -61,18 +61,18 @@ export function Game(props) {
   };
 
   const cardValues = {
-    "A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
+    "A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "0": 10,
     "J": 11, "Q": 12, "K": 13
   };
 
-  const getCardRank = (cardCode) => cardCode.length === 3 ? "10" : cardCode[0];
+  const getCardRank = (cardCode) => cardCode[0];
 
 
   const isNewCardHigher = (prevCardCode, newCardCode) => {
     const prevValue = cardValues[getCardRank(prevCardCode)];
     console.log(`prev value ${prevValue}`);
     const newValue = cardValues[getCardRank(newCardCode)];
-    console.log(`prev value ${prevValue}`);
+    console.log(`new value ${newValue}`);
     return newValue > prevValue;
   };
 
