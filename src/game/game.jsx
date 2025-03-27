@@ -74,7 +74,7 @@ export function Game(props) {
   };
 
   const areCardsEqual = (prevCardCode, newCardCode) => {
-    return cardValues[getCardRank(prevCardCode)] === cardValues[getCardRank(newCardCode)];
+    return cardValues[getCardRank(prevCardCode)] === cardValues[newCardCode.slice(0, -1)];
   };
 
   const updateScore = (prev, next, prediction) => {
