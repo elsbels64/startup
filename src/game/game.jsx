@@ -67,8 +67,10 @@ export function Game(props) {
 
   const getCardRank = (cardCode) => cardCode.length === 3 ? "10" : cardCode[0];
 
+
   const isNewCardHigher = (prevCardCode, newCardCode) => {
     const prevValue = cardValues[getCardRank(prevCardCode)];
+    console.log(`prev value ${prevValue}`);
     const newValue = cardValues[getCardRank(newCardCode)];
     return newValue > prevValue;
   };
