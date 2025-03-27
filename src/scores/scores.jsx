@@ -8,6 +8,8 @@ export function Scores() {
     .then((response) => response.json())
     .then((highScores) => {
       setScores(highScores);
+      // console.log(highScores);
+      // console.log(scores);
     })
   }, []);
 

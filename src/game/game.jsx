@@ -13,7 +13,6 @@ export function Game(props) {
   const [prevCard, setPrevCard] = useState(null);
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [runningScore, setRunningScore] = useState(0);
-  const [highScore, setHighScore] = useState(parseInt(localStorage.getItem("higherScore")) || 0);
   const [score, setScore] = useState(0);
   const [scores, setScores] = useState([]);
 
@@ -66,20 +65,24 @@ export function Game(props) {
     "J": 11, "Q": 12, "K": 13
   };
 
+  const getCardRank = (cardCode) => cardCode.length === 3 ? "10" : cardCode[0];
+
   const isNewCardHigher = (prevCardCode, newCardCode) => {
-    const prevValue = cardValues[prevCardCode.slice(0, -1)];
-    const newValue = cardValues[newCardCode.slice(0, -1)];
+    const prevValue = cardValues[getCardRank(prevCardCode)];
+    const newValue = cardValues[getCardRank(prevCardCode)];
     return newValue > prevValue;
   };
 
   const areCardsEqual = (prevCardCode, newCardCode) => {
-    return cardValues[prevCardCode.slice(0, -1)] === cardValues[newCardCode.slice(0, -1)];
+    return cardValues[getCardRank(prevCardCode)] === cardValues[getCardRank(newCardCode)];
   };
 
   const updateScore = (prev, next, prediction) => {
     if (!prev) return;
     const isHigher = isNewCardHigher(prev.code, next.code);
     const isEqual = areCardsEqual(prev.code, next.code);
+    console.log(`${prev.code}, ${next.code}`)
+    console.log(`is higher: ${isHigher}; is equal ${isEqual}`)
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
@@ -88,10 +91,7 @@ export function Game(props) {
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
       saveScore(newScore, '/api/score');
-      if (runningScore > highScore) {
-        setHighScore(runningScore);
-        saveScore(newScore, '/api/highScore');
-      }
+      saveScore(newScore, '/api/highScore');
       setRunningScore(0);
     }
   };
