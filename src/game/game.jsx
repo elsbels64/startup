@@ -70,9 +70,9 @@ export function Game(props) {
 
   const isNewCardHigher = (prevCardCode, newCardCode) => {
     const prevValue = cardValues[getCardRank(prevCardCode)];
-    console.log(`prev value ${prevValue}`);
+    // console.log(`prev value ${prevValue}`);
     const newValue = cardValues[getCardRank(newCardCode)];
-    console.log(`new value ${newValue}`);
+    // console.log(`new value ${newValue}`);
     return newValue > prevValue;
   };
 
@@ -84,8 +84,8 @@ export function Game(props) {
     if (!prev) return;
     const isHigher = isNewCardHigher(prev.code, next.code);
     const isEqual = areCardsEqual(prev.code, next.code);
-    console.log(`${prev.code}, ${next.code}`)
-    console.log(`is higher: ${isHigher}; is equal ${isEqual}`)
+    // console.log(`${prev.code}, ${next.code}`)
+    // console.log(`is higher: ${isHigher}; is equal ${isEqual}`)
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
