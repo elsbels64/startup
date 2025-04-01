@@ -17,7 +17,7 @@ export function Game(props) {
   const [scores, setScores] = useState([]);
 
   useEffect(()=>{
-    setRunningScore(getCurrentScore(username));
+    setRunningScore(getCurrentScore(props.username));
   },[]);
   
   useEffect(() => {
