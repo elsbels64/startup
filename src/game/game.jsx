@@ -18,7 +18,7 @@ export function Game(props) {
   const [scores, setScores] = useState([]);
 
   useEffect(()=>{
-
+    
   },[]);
   
   useEffect(() => {
@@ -141,6 +141,32 @@ export function Game(props) {
       console.error('There was a problem with the fetch operation:', error);
     });
   }
+
+  async function updateCurrentScore(username){
+    const data = {
+      name: username
+    };
+    try{
+    
+      fetch('/api/currentScore', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+      return responseData;  
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  }
+
 
 
   return (
