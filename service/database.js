@@ -97,5 +97,7 @@ const highScoreCollection = db.collection('highScore');
     getScores,
     addOrUpdateHighScore,
     getHighScores,
+    addCurrentScore,
+    getCurrentScore,
   };
   

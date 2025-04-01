@@ -83,6 +83,13 @@ apiRouter.post('/highScore', verifyAuth, (req, res) => {
   res.send(highScores);
 });
 
+apiRouter.get('currentScore', verifyAuth, async (req, res)=>{
+  const score =  await DB.getCurrentScore(req.body.name);
+  res.send(score);
+});
+
+
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
