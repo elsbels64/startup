@@ -97,6 +97,7 @@ export function Game(props) {
       // console.log("wrong guess")
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
+      updateCurrentScore(newScore);
       saveScore(newScore, '/api/score');
       saveScore(newScore, '/api/highScore');
       setRunningScore(0);
@@ -115,18 +116,13 @@ export function Game(props) {
     // GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
   };
 
-  async function updateCurrentScore(username, score){
-    const data = {
-      name: username,
-      score: score
-    };
-    
+  async function updateCurrentScore(score){
     fetch('/api/currentScore', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(score)
     })
     .then(response => {
       if (!response.ok) {
@@ -142,7 +138,7 @@ export function Game(props) {
     });
   }
 
-  async function updateCurrentScore(username){
+  async function getCurrentScore(username){
     const data = {
       name: username
     };
