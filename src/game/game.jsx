@@ -14,11 +14,10 @@ export function Game(props) {
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [runningScore, setRunningScore] = useState(0);
   const [score, setScore] = useState(0);
-  const [updatedScore, setupdatedScore] = useState(0);
   const [scores, setScores] = useState([]);
 
   useEffect(()=>{
-    runningScore = getCurrentScore(username);
+    setRunningScore(getCurrentScore(username));
   },[]);
   
   useEffect(() => {
