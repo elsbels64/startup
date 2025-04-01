@@ -49,16 +49,12 @@ const highScoreCollection = db.collection('highScore');
     const update = {  score: score  };  // Update score only if it's higher
     const options = { upsert: true };  // Insert a new record if one doesn't exist
 
-    await highScoreCollection.updateOne(query, update, options);
+    await currentScoreCollection.updateOne(query, update, options);
   }
 
-  function getCurrentScore() {
-    const query = { score: { $gt: 0, $lt: 900 } };
-    const options = {
-      limit: 10,
-    };
-    const cursor = scoreCollection.find(query, options);
-    return cursor.toArray().then(results => results.reverse());
+  function getCurrentScore(name) {
+    const query = { name: name };
+    return currentScoreCollection.find(query);
   }
 
   async function addScore(score) {
