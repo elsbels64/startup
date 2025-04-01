@@ -131,8 +131,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X] **User registration** - registers user in the databas
-- [x] **User login and logout** - checks hashed user password to log them in and updates their auth token when they login. logs the user out when they click logout
+- [X] **User registration** - stores username and hashed password in the database and makes it so the user can play the game.
+- [x] **User login and logout** - checks hashed user password against the hashed password in the database to log them in and updates their auth token when they login. logs the user out when they click logout.
 - [x] **Stores data in MongoDB** - stores user scores and high scores in the database
 - [x] **Stores credentials in MongoDB** - stores username, hashed password, and authentication token in the database
 - [x] **Restricts functionality based on authentication** - if the person is not in the authenticated state (they have clicked the "logout botton" or haven't logged in yet), they can not play the game.
