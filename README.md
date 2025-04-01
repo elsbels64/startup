@@ -131,11 +131,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [X] **User registration** - registers user in the databas
+- [x] **User login and logout** - checks hashed user password to log them in and updates their auth token when they login. logs the user out when they click logout
+- [x] **Stores data in MongoDB** - stores user scores and high scores in the database
+- [x] **Stores credentials in MongoDB** - stores username, hashed password, and authentication token in the database
+- [x] **Restricts functionality based on authentication** - if the person is not in the authenticated state (they have clicked the "logout botton" or haven't logged in yet), they can not play the game.
 
 ## 🚀 WebSocket deliverable
 
