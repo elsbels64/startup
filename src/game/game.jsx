@@ -18,7 +18,7 @@ export function Game(props) {
   const [scores, setScores] = useState([]);
 
   useEffect(()=>{
-    
+    runningScore = getCurrentScore(username);
   },[]);
   
   useEffect(() => {
@@ -93,14 +93,16 @@ export function Game(props) {
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
+      const newScore = { name: props.username, score: runningScore };
+      updateCurrentScore(newScore);
     } else {
       // console.log("wrong guess")
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
-      updateCurrentScore(newScore);
       saveScore(newScore, '/api/score');
       saveScore(newScore, '/api/highScore');
       setRunningScore(0);
+      updateCurrentScore({ name: props.username, score: 0 });
     }
   };
 

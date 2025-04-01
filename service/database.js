@@ -54,7 +54,8 @@ const highScoreCollection = db.collection('highScore');
 
   function getCurrentScore(name) {
     const query = { name: name };
-    return currentScoreCollection.find(query);
+    scoreData = currentScoreCollection.find(query);
+    return scoreData.score;
   }
 
   async function addScore(score) {
