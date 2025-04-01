@@ -13,7 +13,6 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('higherOrLower');
 const userCollection = db.collection('user');
-const currentScoreCollection = db.collection('currentScore');
 const scoreCollection = db.collection('score');
 const highScoreCollection = db.collection('highScore');
 
@@ -42,20 +41,6 @@ const highScoreCollection = db.collection('highScore');
 
   async function updateUser(user) {
     await userCollection.updateOne({ username: user.username }, { $set: user });
-  }
-
-  async function addOrUpdateCurrentScore(name, score) {
-    const query = { name: name };  // Find user by name
-    const update = {  score: score  };  // Update score only if it's higher
-    const options = { upsert: true };  // Insert a new record if one doesn't exist
-
-    await currentScoreCollection.updateOne(query, update, options);
-  }
-
-  function getCurrentScore(name) {
-    const query = { name: name };
-    scoreData = currentScoreCollection.find(query);
-    return scoreData.score;
   }
 
   async function addScore(score) {
@@ -98,7 +83,5 @@ const highScoreCollection = db.collection('highScore');
     getScores,
     addOrUpdateHighScore,
     getHighScores,
-    addOrUpdateCurrentScore,
-    getCurrentScore,
   };
   

@@ -16,10 +16,6 @@ export function Game(props) {
   const [score, setScore] = useState(0);
   const [scores, setScores] = useState([]);
 
-  useEffect(()=>{
-    setRunningScore(getCurrentScore(props.username));
-  },[]);
-  
   useEffect(() => {
     setPrevCard(card);
   }, [card]);
@@ -30,6 +26,7 @@ export function Game(props) {
     .then((scores) => {
       setScores(scores);
     })
+    setScores(scores);
   }, [score]);
 
   const flipCard = async (event) => {
@@ -92,8 +89,6 @@ export function Game(props) {
 
     if (isEqual || (isHigher && prediction === "higher") || (!isHigher && prediction === "lower")) {
       setRunningScore((prevScore) => prevScore + 1);
-      const newScore = { name: props.username, score: runningScore };
-      updateCurrentScore(newScore);
     } else {
       // console.log("wrong guess")
       const newScore = { name: props.username, score: runningScore };
@@ -101,7 +96,6 @@ export function Game(props) {
       saveScore(newScore, '/api/score');
       saveScore(newScore, '/api/highScore');
       setRunningScore(0);
-      updateCurrentScore({ name: props.username, score: 0 });
     }
   };
 
@@ -116,54 +110,6 @@ export function Game(props) {
     // Let other players know the game has concluded
     // GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
   };
-
-  async function updateCurrentScore(score){
-    fetch('/api/currentScore', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(score)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(responseData => {
-      console.log(responseData);
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-  }
-
-  async function getCurrentScore(username){
-    const data = {
-      name: username
-    };
-    try{
-    
-      fetch('/api/currentScore', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-      console.log(responseData);
-      return responseData;  
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-    }
-  }
-
 
 
   return (

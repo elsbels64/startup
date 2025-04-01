@@ -7,6 +7,11 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
+// The scores and users are saved in memory and disappear whenever the service is restarted.
+// let users = [];
+// let scores = [];
+// let highScores = [];
+
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 app.use(express.json());
 app.use(cookieParser());
@@ -82,17 +87,6 @@ apiRouter.post('/highScore', verifyAuth, (req, res) => {
   const highScores = updateHighScores(req.body);
   res.send(highScores);
 });
-
-apiRouter.get('currentScore', verifyAuth, async (req, res)=>{
-  const score =  await DB.getCurrentScore(req.body.name);
-  res.send(score);
-});
-
-apiRouter.post('currentScore', verifyAuth, async (req,res) => {
-  await DB.addOrUpdateCurrentScore(req.body.name, req.body.score);
-  const score = DB.getCurrentScore(req.body.name);
-  return score
-})
 
 // Default error handler
 app.use(function (err, req, res, next) {
