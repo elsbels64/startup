@@ -14,8 +14,13 @@ export function Game(props) {
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [runningScore, setRunningScore] = useState(0);
   const [score, setScore] = useState(0);
+  const [updatedScore, setupdatedScore] = useState(0);
   const [scores, setScores] = useState([]);
 
+  useEffect(()=>{
+
+  },[]);
+  
   useEffect(() => {
     setPrevCard(card);
   }, [card]);
@@ -26,7 +31,6 @@ export function Game(props) {
     .then((scores) => {
       setScores(scores);
     })
-    setScores(scores);
   }, [score]);
 
   const flipCard = async (event) => {
@@ -110,6 +114,33 @@ export function Game(props) {
     // Let other players know the game has concluded
     // GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
   };
+
+  async function updateCurrentScore(username, score){
+    const data = {
+      name: username,
+      score: score
+    };
+    
+    fetch('/api/currentScore', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(responseData => {
+      console.log(responseData);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }
 
 
   return (
