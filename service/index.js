@@ -88,7 +88,11 @@ apiRouter.get('currentScore', verifyAuth, async (req, res)=>{
   res.send(score);
 });
 
-
+apiRouter.post('currentScore', verifyAuth, async (req,res) => {
+  await DB.addOrUpdateCurrentScore(req.body.name, req.body.score);
+  const score = DB.getCurrentScore(req.body.name);
+  return score
+})
 
 // Default error handler
 app.use(function (err, req, res, next) {

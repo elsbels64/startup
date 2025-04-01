@@ -44,7 +44,7 @@ const highScoreCollection = db.collection('highScore');
     await userCollection.updateOne({ username: user.username }, { $set: user });
   }
 
-  async function addCurrentScore(name, score) {
+  async function addOrUpdateCurrentScore(name, score) {
     const query = { name: name };  // Find user by name
     const update = {  score: score  };  // Update score only if it's higher
     const options = { upsert: true };  // Insert a new record if one doesn't exist
@@ -97,7 +97,7 @@ const highScoreCollection = db.collection('highScore');
     getScores,
     addOrUpdateHighScore,
     getHighScores,
-    addCurrentScore,
+    addOrUpdateCurrentScore,
     getCurrentScore,
   };
   
