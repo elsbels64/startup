@@ -10,15 +10,17 @@ class EventMessage {
     events = [];
     handlers = [];
   
+    //Sets up a WebSocket connection to the server at the /ws endpoint
+    
     constructor() {
       let port = window.location.port;
       const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss'; // switch between websocket and secure websocket depending on http or https
-      this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+      this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`); // websocket link
       this.socket.onopen = (event) => {
-        this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'connected' }));
+        this.receiveEvent(new EventMessage('HigherOrLower', GameEvent.System, { msg: 'connected' }));
       };
       this.socket.onclose = (event) => {
-        this.receiveEvent(new EventMessage('Simon', GameEvent.System, { msg: 'disconnected' }));
+        this.receiveEvent(new EventMessage('HigherOrLower', GameEvent.System, { msg: 'disconnected' }));
       };
       this.socket.onmessage = async (msg) => {
         try {
@@ -28,4 +30,29 @@ class EventMessage {
       };
     }
 
+    broadcastEvent(from, type, value) {
+        const event = new EventMessage(from, type, value);
+        this.socket.send(JSON.stringify(event));
+    }
+
+    addHandler(handler) {
+        this.handlers.push(handler);
+    }
+
+    removeHandler(handler) {
+        this.handlers.filter((h) => h !== handler);
+    }
+
+    receiveEvent(event) {
+        this.events.push(event);
+    
+        this.events.forEach((e) => {
+          this.handlers.forEach((handler) => {
+            handler(e);
+          });
+        });
+    }
 }
+
+const GameNotifier = new GameEventNotifier();
+export { GameEvent, GameNotifier };

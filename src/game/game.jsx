@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./game.css";
 import { OtherScores } from "./otherScores.jsx";
+import { GameEvent, GameNotifier } from './gameNotifier';
 
 export function Game(props) {
   const defaultCards = [
