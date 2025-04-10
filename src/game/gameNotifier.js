@@ -1,6 +1,7 @@
 class EventMessage {
-    constructor(from, value) {
+    constructor(from, type, value) {
       this.from = from;
+      this.type = type;
       this.value = value;
     }
   }
