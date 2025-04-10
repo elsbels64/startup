@@ -141,3 +141,5 @@ async function setAuthCookie(res, authToken) {
 app.listen(port, () =>{
   console.log(`listening on port ${port}`);
 });
+
+peerProxy(httpService);
