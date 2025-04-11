@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import "./otherScores.css"
 
-export function OtherScores({ scores }) {
+export function OtherScores() {
 
   const [scores, setScores] = React.useState([]);
 
