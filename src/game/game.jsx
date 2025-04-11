@@ -95,7 +95,7 @@ export function Game(props) {
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
       saveScore(newScore, '/api/score');
-      GameNotifier.broadcastEvent(username, GameEvent.End, newScore);
+      GameNotifier.broadcastEvent(props.username, GameEvent.End, newScore);
       saveScore(newScore, '/api/highScore');
       setRunningScore(0);
     }
