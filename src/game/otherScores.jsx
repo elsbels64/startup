@@ -21,7 +21,7 @@ export function OtherScores() {
 
   function createMessageArray() {
     const messageArray = [];
-    for (const [i, event] of events.entries()) {
+    for (const [i, event] of scores.entries()) {
       let message = 'unknown';
       if (event.type === GameEvent.End) {
         message = `scored ${event.value.score}`;
