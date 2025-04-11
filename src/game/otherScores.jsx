@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { GameEvent, GameNotifier } from './gameNotifier';
 
 import "./otherScores.css"
 
