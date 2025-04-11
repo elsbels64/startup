@@ -1,3 +1,8 @@
+const GameEvent = {
+    System: 'system',
+    End: 'gameEnd',
+  };
+
 class EventMessage {
     constructor(from, type, value) {
       this.from = from;
@@ -11,7 +16,7 @@ class EventMessage {
     handlers = [];
   
     //Sets up a WebSocket connection to the server at the /ws endpoint
-    
+
     constructor() {
       let port = window.location.port;
       const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss'; // switch between websocket and secure websocket depending on http or https
