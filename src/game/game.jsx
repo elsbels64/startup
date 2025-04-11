@@ -114,7 +114,7 @@ export function Game(props) {
   return (
     <main>
       <div className="container">
-        <OtherScores scores={scores} />
+        <OtherScores/>
         <div className="game">
           <div className="score">
             <label htmlFor="count">Score</label>
