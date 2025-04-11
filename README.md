@@ -141,8 +141,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - peerProxy listens for connections and occasionally sends out pings to make sure client is still connected.
+- [x] **Frontend makes WebSocket connection** - GameNotifier makes a websocket connection
+- [x] **Data sent over WebSocket connection** - GameNotifier.broadcastEvent is called in game and sends players scores over websocket.
+- [x] **WebSocket data displayed** - other scores section on the top of the game page displays other players' scores in real time.
+- [x] **Application is fully functional** - you can login and play higher or lower. It will then send your scores to the other players and update high scores accordingly.
