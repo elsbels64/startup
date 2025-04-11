@@ -95,6 +95,7 @@ export function Game(props) {
       const newScore = { name: props.username, score: runningScore };
       setScore(runningScore);
       saveScore(newScore, '/api/score');
+      GameNotifier.broadcastEvent(username, GameEvent.End, newScore);
       saveScore(newScore, '/api/highScore');
       setRunningScore(0);
     }
@@ -107,10 +108,7 @@ export function Game(props) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(score),
     });
-
-    // Let other players know the game has concluded
-    // GameNotifier.broadcastEvent(userName, GameEvent.End, newScore);
-  };
+  }
 
 
   return (
