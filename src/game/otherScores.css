@@ -11,3 +11,11 @@ ul{
   border-width: 0;
   margin:0;
 }
+
+li{
+  padding: 0;
+}
+
+.score{
+  margin: 0;
+}
