@@ -45,7 +45,7 @@ export function OtherScores() {
     return (
       <div className="other-scores">
         <h2>Other Players' Scores</h2>
-        <div id ='player-scores'>{createMessageArray}</div>
+        <div id ='player-scores'>{createMessageArray()}</div>
       </div>
     );
   }
